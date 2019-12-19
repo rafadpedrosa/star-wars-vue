@@ -1,20 +1,22 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/Home">Home</router-link>
-      |
-      <router-link to="/People">People</router-link>
-      |
-      <router-link to="/Films">Films</router-link>
-      |
-      <router-link to="/Starships">Starships</router-link>
-      |
-      <router-link to="/Vehicles">Vehicles</router-link>
-      |
-      <router-link to="/Species">Species</router-link>
-      |
-      <router-link to="/Planets">Planets</router-link>
-    </div>
+    <b-navbar toggleable="lg" type="dark" variant="info">
+      <b-navbar-brand href="#">NavBar</b-navbar-brand>
+
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item to="/Home" href="#">Home</b-nav-item>
+          <b-nav-item to="/People" href="#">People</b-nav-item>
+          <b-nav-item to="/Films" href="#">Films</b-nav-item>
+          <b-nav-item to="/Starships" href="#">Starships</b-nav-item>
+          <b-nav-item to="/Vehicles" href="#">Vehicles</b-nav-item>
+          <b-nav-item to="/Species" href="#">Species</b-nav-item>
+          <b-nav-item to="/Planets" href="#">Planets</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
     <router-view/>
   </div>
 </template>
