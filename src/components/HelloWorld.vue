@@ -9,9 +9,9 @@
       tag="article"
       title="I'm your father"
     >
-      <b-card-text >
+      <b-card-text>
         <transition-group name="list" tag="p">
-          <div v-for="(item, index) in itemsList" v-bind:key="index" class="list-item">
+          <div class="list-item" v-bind:key="index" v-for="(item, index) in itemsList">
             <span v-if="index">{{ item }}</span>
           </div>
         </transition-group>
@@ -21,48 +21,55 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'HelloWorld',
   props: {},
   data () {
     return {
       toggle: false,
-      initialized: false,
-      items: ['Shuuuuu...', 'Shiiiii....']
+      items: ['Shuuuuu...', 'Shiiiii....'],
+      refreshIntervalId: 0
     }
   },
   computed: {
+    ...mapGetters(['initialized']),
     itemsList () {
       return this.items
     }
   },
-  created () {
+  mounted () {
     if (!this.initialized) {
-      setInterval(() => {
-        console.log(':::')
+      this.refreshIntervalId = setInterval(() => {
         let test = this.items.shift()
         setTimeout(() => {
           this.items.push(test)
         }, 1000)
       }, 3000)
+
+      this.$store.commit('INITIALIZED', { init: true })
     }
-    this.initialized = true
+  },
+  destroyed () {
+    this.$store.commit('INITIALIZED', { init: false })
+    clearInterval(this.refreshIntervalId)
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-  /*transform: translateY(-24px);*/
-
   .list-item {
     display: inline-block;
     margin-right: 10px;
   }
+
   .list-enter-active, .list-leave-active {
     transition: all 1s;
   }
-  .list-enter, .list-leave-to /* .list-leave-active em versões anteriores a 2.1.8 */ {
+
+  .list-enter, .list-leave-to
+  {
     opacity: 0;
     transform: translateY(30px);
   }

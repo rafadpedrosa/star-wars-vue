@@ -28,8 +28,6 @@ export default {
   name: 'app',
   methods: {
     isActive (path) {
-      // eslint-disable-next-line no-debugger
-      debugger
       return this.$route.path === path
     }
   }

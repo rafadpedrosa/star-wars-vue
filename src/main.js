@@ -1,7 +1,8 @@
+// optionally use a fetch polyfill
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store/globalStore'
+import store from './store/globalStore.js'
 import BootstrapVue from 'bootstrap-vue'
 import './assets/custom.scss'
 

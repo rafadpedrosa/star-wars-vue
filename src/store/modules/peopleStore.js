@@ -1,15 +1,24 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import axios from 'axios'
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+export default {
+  namespaced: true,
   state: {
+    peopleList: []
   },
   mutations: {
+    SET_PEOPLE_LIST (state, data) {
+      state.peopleList = data
+    }
   },
   actions: {
+    fetchPeoples () {
+      return axios.get('http://localhost:8888/people', {
+        mode: 'no-cors'
+      }).then((response) => response.data)
+    }
   },
-  modules: {
-  }
-})
+  getters: {
+    peoples: state => state.peopleList
+  },
+  modules: {}
+}
