@@ -22,3 +22,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## ATENTION
+This project use the: https://github.com/rafadpedrosa/swapi to make it work
